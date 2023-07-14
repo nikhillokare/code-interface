@@ -25,7 +25,7 @@ function CodeSubmission() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/evaluate', {
+      const response = await fetch('https://coding-comprtition-interface.onrender.com/api/evaluate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
