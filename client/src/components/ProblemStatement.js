@@ -8,7 +8,7 @@ function ProblemStatement() {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/problems');
+        const response = await fetch('https://coding-comprtition-interface.onrender.com/api/problems');
         const data = await response.json();
         setProblems(data);
       } catch (error) {
