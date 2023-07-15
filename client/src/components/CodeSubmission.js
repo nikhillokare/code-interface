@@ -31,13 +31,14 @@ function CodeSubmission() {
       });
       return;
     }
+
     try {
       const response = await fetch('https://coding-comprtition-interface.onrender.com/api/evaluate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ code, language: 'cpp', problemId: 1 }),
+        body: JSON.stringify({ code, language, problemId: 1 }),
       });
       const evaluationResult = await response.json();
       setEvaluationResult(evaluationResult);
@@ -49,16 +50,18 @@ function CodeSubmission() {
   const handleCodeChange = e => {
     setCode(e.target.value);
   };
+
   const handleLanguageChange = e => {
     setLanguage(e.target.value);
     setCode(languageBoilerplate[e.target.value]);
   };
+
   return (
     <Box>
       <Text fontSize="xl" fontWeight="bold" mb={4}>
         Code Submission
       </Text>
-    <label>
+      <label>
         Select Your Language:
         <Select value={language} onChange={handleLanguageChange}>
           <option value="cpp">C++</option>
