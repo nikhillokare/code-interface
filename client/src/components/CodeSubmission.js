@@ -10,7 +10,7 @@ int main() {
   return 0;
 }`,
   js: `// Write Your JavaScript Code Here`,
-  python: `// Write Your Python Code Here`,
+  python:
 };
 
 function CodeSubmission() {
