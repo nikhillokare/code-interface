@@ -19,11 +19,7 @@ function CodeSubmission() {
   const [evaluationResult, setEvaluationResult] = useState(null);
 
   const handleSubmit = async () => {
-    if (
-      code === languageBoilerplate.cpp ||
-      code === languageBoilerplate.js ||
-      code === languageBoilerplate.python
-    ) {
+    if (code === languageBoilerplate.cpp) {
       setEvaluationResult({
         output: 'Please write your code in the code editor.',
         executionTime: 0,
