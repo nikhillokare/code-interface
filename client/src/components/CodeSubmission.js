@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Textarea, Button, Text } from '@chakra-ui/react';
+import { Box, Textarea, Button, Text, Select } from '@chakra-ui/react';
 
 const languageBoilerplate = {
   cpp: `#include <iostream>
@@ -9,14 +9,21 @@ int main() {
   // Your C++ code here
   return 0;
 }`,
+  js: `// Write Your JavaScript Code Here`,
+  python: `// Write Your Python Code Here`,
 };
 
 function CodeSubmission() {
   const [code, setCode] = useState(languageBoilerplate.cpp);
+  const [language, setLanguage] = useState('cpp');
   const [evaluationResult, setEvaluationResult] = useState(null);
 
   const handleSubmit = async () => {
-    if (code === languageBoilerplate.cpp) {
+    if (
+      code === languageBoilerplate.cpp ||
+      code === languageBoilerplate.js ||
+      code === languageBoilerplate.python
+    ) {
       setEvaluationResult({
         output: 'Please write your code in the code editor.',
         executionTime: 0,
@@ -42,15 +49,24 @@ function CodeSubmission() {
   const handleCodeChange = e => {
     setCode(e.target.value);
   };
-
+  const handleLanguageChange = e => {
+    setLanguage(e.target.value);
+    setCode(languageBoilerplate[e.target.value]);
+  };
   return (
     <Box>
       <Text fontSize="xl" fontWeight="bold" mb={4}>
-        Write Your Code in C++
-      </Text>
-      <Text fontSize="xl" fontWeight="bold" mb={4}>
         Code Submission
       </Text>
+    <label>
+        Select Your Language:
+        <Select value={language} onChange={handleLanguageChange}>
+          <option value="cpp">C++</option>
+          <option value="js">JavaScript</option>
+          <option value="python">Python</option>
+        </Select>
+      </label>
+      <br />
       <Textarea
         value={code}
         onChange={handleCodeChange}
