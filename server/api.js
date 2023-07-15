@@ -79,8 +79,8 @@ function evaluate(code, language, problem) {
         evaluationResult.output = error.toString();
       }
       break;
-      
-      default:
+
+    default:
       break;
   }
 
