@@ -45,7 +45,42 @@ function evaluate(code, language, problem) {
       }
       break;
 
-    default:
+    case "js":
+      try {
+        const startTime = performance.now();
+        const executionResult = spawnSync("node", ["-e", code], {
+          encoding: "utf-8",
+        });
+
+        const endTime = performance.now();
+        const executionTime = endTime - startTime;
+
+        evaluationResult.output = executionResult.stdout.trim();
+        evaluationResult.executionTime = executionTime;
+        evaluationResult.totalScore = evaluationResult.passed ? 30 : 0;
+      } catch (error) {
+        evaluationResult.output = error.toString();
+      }
+      break;
+
+    case "python":
+      try {
+        const startTime = performance.now();
+        const executionResult = spawnSync("python", ["-c", code], {
+          encoding: "utf-8",
+        });
+        const endTime = performance.now();
+        const executionTime = endTime - startTime;
+
+        evaluationResult.output = executionResult.stdout.trim();
+        evaluationResult.executionTime = executionTime;
+        evaluationResult.totalScore = evaluationResult.passed ? 30 : 0;
+      } catch (error) {
+        evaluationResult.output = error.toString();
+      }
+      break;
+      
+      default:
       break;
   }
 
